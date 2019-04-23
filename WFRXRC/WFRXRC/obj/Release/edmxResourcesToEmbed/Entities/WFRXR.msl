@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Tbl_RXRModelStoreContainer" CdmEntityContainer="Tbl_RXREntities">
+    <EntitySetMapping Name="CARPETAs">
+      <EntityTypeMapping TypeName="Tbl_RXRModel.CARPETA">
+        <MappingFragment StoreEntitySet="CARPETA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="TITULO" ColumnName="TITULO" />
+          <ScalarProperty Name="ICON" ColumnName="ICON" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctl_Cliente">
+      <EntityTypeMapping TypeName="Tbl_RXRModel.ctl_Cliente">
+        <MappingFragment StoreEntitySet="ctl_Cliente">
+          <ScalarProperty Name="Id_Cliente" ColumnName="Id_Cliente" />
+          <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+          <ScalarProperty Name="RazonComercial" ColumnName="RazonComercial" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="RFC" ColumnName="RFC" />
+          <ScalarProperty Name="RFC_Direccion" ColumnName="RFC_Direccion" />
+          <ScalarProperty Name="RFC_Correo" ColumnName="RFC_Correo" />
+          <ScalarProperty Name="Credito" ColumnName="Credito" />
+          <ScalarProperty Name="TiempoCredito" ColumnName="TiempoCredito" />
+          <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctl_ContactosCliente">
+      <EntityTypeMapping TypeName="Tbl_RXRModel.ctl_ContactosCliente">
+        <MappingFragment StoreEntitySet="ctl_ContactosCliente">
+          <ScalarProperty Name="Id_Cliente" ColumnName="Id_Cliente" />
+          <ScalarProperty Name="Contacto" ColumnName="Contacto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctl_Dia">
+      <EntityTypeMapping TypeName="Tbl_RXRModel.ctl_Dia">
+        <MappingFragment StoreEntitySet="ctl_Dia">
+          <ScalarProperty Name="id_Dia" ColumnName="id_Dia" />
+          <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+          <ScalarProperty Name="cargaxDiaI" ColumnName="cargaxDiaI" />
+          <ScalarProperty Name="horaI" ColumnName="horaI" />
+          <ScalarProperty Name="totHoras" ColumnName="totHoras" />
+          <ScalarProperty Name="Explicacion" ColumnName="Explicacion" />
+          <ScalarProperty Name="cargaxDiaF" ColumnName="cargaxDiaF" />
+          <ScalarProperty Name="horaF" ColumnName="horaF" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="serviceO" ColumnName="serviceO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctl_Empleado">
+      <EntityTypeMapping TypeName="Tbl_RXRModel.ctl_Empleado">
+        <MappingFragment StoreEntitySet="ctl_Empleado">
+          <ScalarProperty Name="Id_empleado" ColumnName="Id_empleado" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ApellidoP" ColumnName="ApellidoP" />
+          <ScalarProperty Name="ApellidoM" ColumnName="ApellidoM" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="Calle" ColumnName="Calle" />
+          <ScalarProperty Name="NumExt" ColumnName="NumExt" />
+          <ScalarProperty Name="NumInt" ColumnName="NumInt" />
+          <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+          <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+          <ScalarProperty Name="Tel_emergencia" ColumnName="Tel_emergencia" />
+          <ScalarProperty Name="Contacto_emergencia" ColumnName="Contacto_emergencia" />
+          <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+          <ScalarProperty Name="VacacionesN" ColumnName="VacacionesN" />
+          <ScalarProperty Name="IMSS" ColumnName="IMSS" />
+          <ScalarProperty Name="CURP" ColumnName="CURP" />
+          <ScalarProperty Name="INE_N" ColumnName="INE_N" />
+          <ScalarProperty Name="Pasaporte_N" ColumnName="Pasaporte_N" />
+          <ScalarProperty Name="Id_SAP" ColumnName="Id_SAP" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctl_Login">
+      <EntityTypeMapping TypeName="Tbl_RXRModel.ctl_Login">
+        <MappingFragment StoreEntitySet="ctl_Login">
+          <ScalarProperty Name="Id_Empleado" ColumnName="Id_Empleado" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+          <ScalarProperty Name="Ultimo_Acceso" ColumnName="Ultimo_Acceso" />
+          <ScalarProperty Name="Sesion_Activa" ColumnName="Sesion_Activa" />
+          <ScalarProperty Name="Permisos" ColumnName="Permisos" />
+          <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctl_Nomina">
+      <EntityTypeMapping TypeName="Tbl_RXRModel.ctl_Nomina">
+        <MappingFragment StoreEntitySet="ctl_Nomina">
+          <ScalarProperty Name="Id_Empleado" ColumnName="Id_Empleado" />
+          <ScalarProperty Name="Sueldo" ColumnName="Sueldo" />
+          <ScalarProperty Name="Dias_Vacaciones" ColumnName="Dias_Vacaciones" />
+          <ScalarProperty Name="Bono_Monto" ColumnName="Bono_Monto" />
+          <ScalarProperty Name="Dias_Asignados" ColumnName="Dias_Asignados" />
+          <ScalarProperty Name="Dias_SAginacion" ColumnName="Dias_SAginacion" />
+          <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctl_Proyecto">
+      <EntityTypeMapping TypeName="Tbl_RXRModel.ctl_Proyecto">
+        <MappingFragment StoreEntitySet="ctl_Proyecto">
+          <ScalarProperty Name="Id_Proyecto" ColumnName="Id_Proyecto" />
+          <ScalarProperty Name="Id_Cliente" ColumnName="Id_Cliente" />
+          <ScalarProperty Name="Id_Empleado" ColumnName="Id_Empleado" />
+          <ScalarProperty Name="Nombre_Proyecto" ColumnName="Nombre_Proyecto" />
+          <ScalarProperty Name="Dias_Asignados" ColumnName="Dias_Asignados" />
+          <ScalarProperty Name="Horas_Asignadas" ColumnName="Horas_Asignadas" />
+          <ScalarProperty Name="Costo_Dia" ColumnName="Costo_Dia" />
+          <ScalarProperty Name="Costo_Tiempo" ColumnName="Costo_Tiempo" />
+          <ScalarProperty Name="Fecha_Inicio" ColumnName="Fecha_Inicio" />
+          <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctl_SAP">
+      <EntityTypeMapping TypeName="Tbl_RXRModel.ctl_SAP">
+        <MappingFragment StoreEntitySet="ctl_SAP">
+          <ScalarProperty Name="id_ctlSap" ColumnName="id_ctlSap" />
+          <ScalarProperty Name="Id_Empleado" ColumnName="Id_Empleado" />
+          <ScalarProperty Name="Id_SAP" ColumnName="Id_SAP" />
+          <ScalarProperty Name="Mes" ColumnName="Mes" />
+          <ScalarProperty Name="Servicio" ColumnName="Servicio" />
+          <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+          <ScalarProperty Name="Desc_CRM" ColumnName="Desc_CRM" />
+          <ScalarProperty Name="Id_Cliente" ColumnName="Id_Cliente" />
+          <ScalarProperty Name="CW" ColumnName="CW" />
+          <ScalarProperty Name="Fecha_Asignacion" ColumnName="Fecha_Asignacion" />
+          <ScalarProperty Name="Responsable_SAP" ColumnName="Responsable_SAP" />
+          <ScalarProperty Name="Cantidad_Dias" ColumnName="Cantidad_Dias" />
+          <ScalarProperty Name="Service_Order" ColumnName="Service_Order" />
+          <ScalarProperty Name="idWT" ColumnName="idWT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctl_WorkTime">
+      <EntityTypeMapping TypeName="Tbl_RXRModel.ctl_WorkTime">
+        <MappingFragment StoreEntitySet="ctl_WorkTime">
+          <ScalarProperty Name="id_WT" ColumnName="id_WT" />
+          <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
+          <ScalarProperty Name="Id_Empleado" ColumnName="Id_Empleado" />
+          <ScalarProperty Name="Id_Proyecto" ColumnName="Id_Proyecto" />
+          <ScalarProperty Name="Dias_Laborados" ColumnName="Dias_Laborados" />
+          <ScalarProperty Name="Horas_Laboradas" ColumnName="Horas_Laboradas" />
+          <ScalarProperty Name="Asignacion_SAP" ColumnName="Asignacion_SAP" />
+          <ScalarProperty Name="Id_Cargo" ColumnName="Id_Cargo" />
+          <ScalarProperty Name="Fecha_Carga" ColumnName="Fecha_Carga" />
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PAGINAs">
+      <EntityTypeMapping TypeName="Tbl_RXRModel.PAGINA">
+        <MappingFragment StoreEntitySet="PAGINA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="TITULO" ColumnName="TITULO" />
+          <ScalarProperty Name="CARPETA_ID" ColumnName="CARPETA_ID" />
+          <ScalarProperty Name="ICON" ColumnName="ICON" />
+          <ScalarProperty Name="MOSTRAR" ColumnName="MOSTRAR" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PAGINATs">
+      <EntityTypeMapping TypeName="Tbl_RXRModel.PAGINAT">
+        <MappingFragment StoreEntitySet="PAGINAT">
+          <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TXT50" ColumnName="TXT50" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Tbl_RXRModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ctl_Perfil">
+      <EntityTypeMapping TypeName="Tbl_RXRModel.ctl_Perfil">
+        <MappingFragment StoreEntitySet="ctl_Perfil">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Tbl_RXRModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Tbl_RXRModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Tbl_RXRModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Tbl_RXRModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Tbl_RXRModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Tbl_RXRModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Tbl_RXRModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Tbl_RXRModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Tbl_RXRModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

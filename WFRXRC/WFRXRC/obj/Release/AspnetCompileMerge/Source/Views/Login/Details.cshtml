@@ -1,0 +1,67 @@
+﻿@model WFRXRC.Entities.ctl_Login
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ctl_Login</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pwd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pwd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ultimo_Acceso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ultimo_Acceso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sesion_Activa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sesion_Activa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ctl_Empleado.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ctl_Empleado.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Empleado }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

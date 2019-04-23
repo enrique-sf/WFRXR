@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+    ViewBag.pagina_r = 101;
+    ViewBag.carpeta_r = 100;
+}
+
+@*<link href="~/Content/Home/Index.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />*@
+
+@*<div class="containerx">
+        <div class="grid__item a grow">A</div>
+        <div class="grid__item b">B</div>
+        <div class="grid__item c">C</div>
+        <div class="grid__item d">D</div>
+        <div class="grid__item e">E</div>
+        <div class="grid__item f">F</div>
+    </div>*@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="~/Scripts/HomeScripts/HomeIndex.js"></script>
+
+<style>
+    .estilobtn {
+        display: inline-block;
+        padding: 1em;
+        margin: 0 auto;
+    }
+</style>
+@if (Session["permisos"].ToString() == "1")
+{
+    <div class="row" style="margin-top:10%; margin-bottom:10%;">
+        <div class="col l3 m6 s12 ">
+            <div class="card-panel">
+                <div class="row" style="margin-bottom:0">
+                    <div class="input-field col s12" style="text-align: center;">
+                        <a style="" class="dropdown-trigger estilobtn tooltipped" href="@Url.Action("Index", "Empleado")" data-position="bottom" data-tooltip="Administración de Empleados"><i class="large material-icons">accessibility</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col l3 m6 s12 ">
+            <div class="card-panel">
+                <div class="row" style="margin-bottom:0">
+                    <div class="input-field col s12" style="text-align: center;">
+                        <a style="" class="estilobtn tooltipped" href="@Url.Action("Index", "Cliente")" data-position="bottom" data-tooltip="Administración de Clientes"><i class="large material-icons ">account_balance_wallet</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col l3 m6 s12 ">
+            <div class="card-panel">
+                <div class="row" style="margin-bottom:0">
+                    <div class="input-field col s12" style="text-align: center;">
+                        <a style="" class="dropdown-trigger estilobtn tooltipped" href="@Url.Action("Index", "Proyecto")" data-position="bottom" data-tooltip="Alta de Proyectos"><i class="large material-icons ">add_to_queue</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col l3 m6 s12 ">
+            <div class="card-panel">
+                <div class="row" style="margin-bottom:0">
+                    <div class="input-field col s12" style="text-align: center;">
+                        <a style="" class="dropdown-trigger estilobtn tooltipped" href="@Url.Action("Index", "WorkTime")" data-position="bottom" data-tooltip="Carga de días"><i class="large material-icons ">assignment</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (Session["permisos"].ToString() == "2")
+{
+    <div class="row" style="margin-top:10%; margin-bottom:10%;">
+        <div class="col l6 m6 s12 ">
+            <div class="card-panel">
+                <div class="row" style="margin-bottom:0">
+                    <div class="input-field col s12" style="text-align: center;">
+                        <a style="" class="dropdown-trigger estilobtn tooltipped" href="@Url.Action("Index", "WorkTime")" data-position="bottom" data-tooltip="Carga de días"><i class="large material-icons ">assignment</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col l6 m6 s12 ">
+            <div class="card-panel">
+                <div class="row" style="margin-bottom:0">
+                    <div class="input-field col s12" style="text-align: center;">
+                        <a style="" class="dropdown-trigger estilobtn tooltipped" href="@Url.Action("Index", "WorkTime")" data-position="bottom" data-tooltip="Descargar Reporte"><i class="large material-icons ">arrow_downward</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

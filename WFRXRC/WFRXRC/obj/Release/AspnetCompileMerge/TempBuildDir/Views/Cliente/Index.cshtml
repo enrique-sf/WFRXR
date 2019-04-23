@@ -1,0 +1,111 @@
+﻿@model IEnumerable<WFRXRC.Entities.ctl_Cliente>
+
+@{
+    //ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .mr {
+        margin-right: .5%;
+    }
+</style>
+<div>
+    <div class="col s12 right-align mr">
+        <p>
+            @Html.ActionLink("Crear Nuevo", "Create", null, null, new { @class = "btn btn-primary", @id = "btn_create" })
+        </p>
+    </div>
+</div>
+<div style="overflow:auto;">
+    <div class="row">
+        <div class="col s12">
+            <div class="card-panel" style="overflow:auto">
+                <div class="row" style="margin-bottom:0">
+                    <table class="table table-hover table-striped">
+                        <tr>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.RazonSocial)*@
+                                Razón Social
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.RazonComercial)*@
+                                Razón Comercial
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Direccion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Telefono)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.RFC)
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.RFC_Direccion)*@
+                                RFC Dirección
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.RFC_Correo)*@
+                                RFC Correo
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Credito)
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.TiempoCredito)*@
+                                Tiempo de Crédito
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RazonSocial)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RazonComercial)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Direccion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Telefono)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RFC)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RFC_Direccion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RFC_Correo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Credito)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TiempoCredito)
+                                </td>
+                                <td>
+                                    <a data-form-method="post" href="@Url.Action("Edit", "Cliente", new { id = item.Id_Cliente })">
+                                        <i class='material-icons blue-text'>edit</i>
+                                    </a>
+                                    <a data-form-method="post" href="@Url.Action("Details", "Cliente", new { id = item.Id_Cliente })">
+                                        <i class='material-icons blue-text'>search</i>
+                                    </a>
+                                    <a data-form-method="post" href="@Url.Action("Delete", "Cliente", new { id = item.Id_Cliente })">
+                                        <i class='material-icons blue-text'>delete</i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

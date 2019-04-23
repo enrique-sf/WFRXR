@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WFRXRC.Entities.ctl_Login>
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<h2>Login</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pwd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ultimo_Acceso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sesion_Activa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ctl_Empleado.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pwd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ultimo_Acceso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sesion_Activa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ctl_Empleado.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Empleado }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id_Empleado }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Empleado })
+        </td>
+    </tr>
+}
+
+</table>

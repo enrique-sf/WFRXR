@@ -1,0 +1,124 @@
+﻿@model WFRXRC.Entities.ctl_Proyecto
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .marginT {
+        margin-top: 25px;
+    }
+
+    .mr {
+        margin-right: .88%;
+        margin-top: 1%;
+    }
+</style>
+@*<link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Scripts/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui.min.js"></script>*@
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+@if (ViewBag.errors != "")
+{
+    <script>
+$(document).ready(function () {
+    var message = '@ViewBag.errors';
+     if (message != "") {
+         errorMessage(message);
+     }
+     function errorMessage(msg) {
+         M.toast({ html: msg });
+     }
+});
+    </script>
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="col s12 right-align mr">
+            <input type="submit" value="Crear" class="btn btn-default" id="btn_guardar" style="display:none; float:right;" />
+            <input type="button" value="Crear" class="btn btn-default" id="btn_guardarh" style="float:right;" />
+        </div>
+    </div>
+    <div style="overflow:auto;">
+        <div class="row" style="margin-bottom:4%;">
+            <div class="col l6 s12">
+                <div class="card-panel">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            @Html.LabelFor(model => model.Id_Cliente, "Cliente", htmlAttributes: new { @class = "control-label col-md-2 active" })
+                            @Html.DropDownList("Id_Cliente", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                        <div class="input-field col s12">
+                            @Html.LabelFor(model => model.Id_Empleado, "Empleado", htmlAttributes: new { @class = "control-label col-md-2 active" })
+                            @Html.DropDownList("Id_Empleado", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                        <div class="input-field col s12">
+                            @Html.LabelFor(model => model.Nombre_Proyecto, "Nombre del Proyecto", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Nombre_Proyecto, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="input-field col s12">
+                            @Html.LabelFor(model => model.Dias_Asignados, "Días Asignados", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Dias_Asignados, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col l6 s12">
+                <div class="card-panel">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            @Html.LabelFor(model => model.Horas_Asignadas, "Horas Asignadas", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Horas_Asignadas, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="input-field col s12">
+                            @Html.LabelFor(model => model.Costo_Dia, "Costo por día", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Costo_Dia, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="input-field col s12">
+                            @Html.LabelFor(model => model.Costo_Tiempo, "Costo Tiempo", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Costo_Tiempo, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="input-field col s12">
+                            @Html.LabelFor(model => model.Fecha_Inicio, "Fecha de Inicio", htmlAttributes: new { @class = "control-label col-md-2 active" })
+                            @Html.EditorFor(model => model.Fecha_Inicio, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <script>
+                            var elemdp = document.querySelector('#Fecha_Inicio');
+                            var optionsdp = {
+                                format: 'dd/mm/yyyy',
+                                onClose: function (e) {
+                                },
+                                i18n: {
+                                    clear: 'Limpiar',
+                                    today: 'Hoy',
+                                    done: 'Seleccionar',
+                                    previousMonth: '‹',
+                                    nextMonth: '›',
+                                    months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                    monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                                    weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                                    weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                                    weekdaysAbbrev: ['D', 'L', 'M', 'X', 'J', 'V', 'S']
+                                }
+                            };
+                            var instancedp = M.Datepicker.init(elemdp, optionsdp);
+
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script src="~/Scripts/Proyectos/Proyectos.js"></script>

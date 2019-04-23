@@ -1,0 +1,97 @@
+﻿@model WFRXRC.Entities.ctl_Proyecto
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .mr {
+        margin-right: .88%;
+        margin-top: 1%;
+    }
+</style>
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col s12 right-align mr">
+                <input type="submit" value="Delete" class="btn btn-default" />
+            </div>
+        </div>
+    }
+    <div class="row mar">
+        <div class="col l6 s12">
+            <div class="card-panel">
+                <div class="row">
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Id_Proyecto)
+                    </div>
+                    <div class="input-field col s12">
+                        @Html.LabelFor(model => model.Id_Cliente, "Cliente", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.ctl_Cliente.RazonComercial, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    </div>
+                    <div class="input-field col s12">
+                        @Html.LabelFor(model => model.Id_Empleado, "Id_Empleado", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.ctl_Empleado.Nombre, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    </div>
+                    <div class="input-field col s12">
+                        @Html.LabelFor(model => model.Nombre_Proyecto, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.Nombre_Proyecto, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    </div>
+                    <div class="input-field col s12">
+                        @Html.LabelFor(model => model.Dias_Asignados, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.Dias_Asignados, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col l6 s12">
+            <div class="card-panel">
+                <div class="row">
+                    <div class="input-field col s12">
+                        @Html.LabelFor(model => model.Horas_Asignadas, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.Horas_Asignadas, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    </div>
+                    <div class="input-field col s12">
+                        @Html.LabelFor(model => model.Costo_Dia, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.Costo_Dia, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    </div>
+                    <div class="input-field col s12">
+                        @Html.LabelFor(model => model.Costo_Tiempo, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.Costo_Tiempo, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    </div>
+                    <div class="input-field col s12">
+                        @Html.LabelFor(model => model.Fecha_Inicio, htmlAttributes: new { @class = "control-label col-md-2 active" })
+                        @Html.EditorFor(model => model.Fecha_Inicio, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    </div>
+                    <script>
+                        var elemdp = document.querySelector('#Fecha_Inicio');
+                        var optionsdp = {
+                            format: 'dd/mm/yyyy',
+                            onClose: function (e) {
+                            },
+                            i18n: {
+                                clear: 'Limpiar',
+                                today: 'Hoy',
+                                done: 'Seleccionar',
+                                previousMonth: '‹',
+                                nextMonth: '›',
+                                months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                                weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                                weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                                weekdaysAbbrev: ['D', 'L', 'M', 'X', 'J', 'V', 'S']
+                            }
+                        };
+                        var instancedp = M.Datepicker.init(elemdp, optionsdp);
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-actions no-color">
+        @Html.ActionLink("Regresar", "Index")
+    </div>
+</div>

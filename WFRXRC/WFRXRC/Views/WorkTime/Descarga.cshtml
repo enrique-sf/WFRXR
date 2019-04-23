@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewBag.Title = "Descarga";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/WT/Descarga.js"></script>
+<style>
+    .margenes {
+        margin-top: 4%;
+        margin-bottom: 11%;
+    }
+</style>
+<div class="row margenes">
+    <div class="col l6 m9 s12">
+        <div class="card-panel">
+            <div class="row" style="margin-bottom:0">
+                <h5>Descarga Reporte</h5>
+                <label>Parametros de descarga</label>
+                <div class="input-field col s4">
+                    <p>
+                        <label>
+                            <input name="group1" value="M" type="radio" checked />
+                            <span>Mes</span>
+                        </label>
+                    </p>
+                    <p style="display:none">
+                        <label>
+                            <input name="group1" value="P" type="radio" />
+                            <span>Periodo</span>
+                        </label>
+                    </p>
+                </div>
+                <div id="xMes" style="display:block;">
+                    <div class="input-field col s4">
+                        <select id='mes'>
+                            <option value='1'>Enero</option>
+                            <option value='2'>Febrero</option>
+                            <option value='3'>Marzo</option>
+                            <option value='4'>Abril</option>
+                            <option value='5'>Mayo</option>
+                            <option value='6'>Junio</option>
+                            <option value='7'>Julio</option>
+                            <option value='8'>Agosto</option>
+                            <option value='9'>Septiembre</option>
+                            <option value='10'>Octubre</option>
+                            <option value='11'>Noviembre</option>
+                            <option value='12'>Diciembre</option>
+                        </select>
+                        <label for="mes">Mes</label>
+                    </div>
+                    <div class="input-field col s3">
+                        <input type="text" id="xmesaño" maxlength="4" placeholder="AAAA"/>
+                        <label for="xmesaño">Año</label>
+                    </div>
+                </div>
+                <div id="xPeriodo" style="display:none;">
+                    <div class="input-field col s7">
+                        <div class="input-field col s6">
+                            <input type="text" id="xpI" />
+                            <label for="xpI">De</label>
+                        </div>
+                        <script>
+                                var elemdp = document.querySelector('#xpI');
+                                var optionsdp = {
+                                    format: 'dd/mm/yyyy',
+                                    onClose: function (e) {
+                                    },
+                                    i18n: {
+                                        clear: 'Limpiar',
+                                        today: 'Hoy',
+                                        done: 'Seleccionar',
+                                        previousMonth: '‹',
+                                        nextMonth: '›',
+                                        months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                        monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                                        weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                                        weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                                        weekdaysAbbrev: ['D', 'L', 'M', 'X', 'J', 'V', 'S']
+                                    }
+                                };
+                                var instancedp = M.Datepicker.init(elemdp, optionsdp);
+                        </script>
+                        <div class="input-field col s6">
+                            <input type="text" id="xpF" />
+                            <label for="xpF">Hasta</label>
+                        </div>
+                        <script>
+                                var elemdp = document.querySelector('#xpF');
+                                var optionsdp = {
+                                    format: 'dd/mm/yyyy',
+                                    onClose: function (e) {
+                                    },
+                                    i18n: {
+                                        clear: 'Limpiar',
+                                        today: 'Hoy',
+                                        done: 'Seleccionar',
+                                        previousMonth: '‹',
+                                        nextMonth: '›',
+                                        months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                        monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                                        weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                                        weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                                        weekdaysAbbrev: ['D', 'L', 'M', 'X', 'J', 'V', 'S']
+                                    }
+                                };
+                                var instancedp = M.Datepicker.init(elemdp, optionsdp);
+                        </script>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:1%;">
+                    <div class="input-field col s12">
+                        @using (Html.BeginForm("Descargar", "WorkTime", FormMethod.Post, new { @style = "display:initial;" }))
+                        {
+                            //Parametros a usar
+                            <input type="hidden" id="mesP" name="mes" value="">
+                            <input type="hidden" id="anho" name="anho" value="">
+                            <input id="btnD" type="button" value="Descargar" class="btn btn-default">
+                            <input id="btnDReporte" type="submit" value="Descargar" class="btn btn-default" style="display:none">
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

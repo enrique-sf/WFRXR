@@ -1,0 +1,16 @@
+﻿@media (max-width: 550px) {
+    h1 {
+        font-size: 1.0rem;
+    }
+    .wc-day-column-header {
+        font-size: 10px;
+    }
+}
+@media (max-width: 480px) {
+    h1 {
+        font-size: 0.8rem;
+    }
+    .wc-day-column-header {
+        font-size: 9px;
+    }
+}

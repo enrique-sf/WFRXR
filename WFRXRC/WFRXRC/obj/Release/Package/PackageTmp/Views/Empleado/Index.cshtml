@@ -1,0 +1,109 @@
+﻿@model IEnumerable<WFRXRC.Entities.ctl_Empleado>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .mr {
+        margin-right: .85%;
+    }
+</style>
+<div>
+    <div class="col s12 right-align mr">
+        <p>
+            @Html.ActionLink("Crear Nuevo", "Create", null, null, new { @class = "btn btn-primary", @id = "btn_create" })
+        </p>
+    </div>
+</div>
+<div style="overflow:auto;">
+    <div class="row">
+        <div class="col l12">
+            <div class="card-panel" style="overflow:auto">
+                <div class="row" style="margin-bottom:0">
+                    <table class="table table-hover table-striped">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nombre)
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.ApellidoP)*@
+                                Paterno
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.ApellidoM)*@
+                                Materno
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Calle)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Colonia)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Ciudad)
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.Tel_emergencia)*@
+                                Tel. Emergencia
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.FechaIngreso)*@
+                                Fecha de Ingreso
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ApellidoP)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ApellidoM)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Calle)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Colonia)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Ciudad)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Tel_emergencia)
+                                </td>
+                                <td>
+                                    @item.FechaIngreso.Day/@item.FechaIngreso.Month/@item.FechaIngreso.Year
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    <a data-form-method="post" href="@Url.Action("Edit", "Empleado", new { id = item.Id_empleado })">
+                                        <i class='material-icons blue-text'>edit</i>
+                                    </a>
+                                    <a data-form-method="post" href="@Url.Action("Details", "Empleado", new { id = item.Id_empleado })">
+                                        <i class='material-icons blue-text'>search</i>
+                                    </a>
+                                    <a data-form-method="post" href="@Url.Action("Delete", "Empleado", new { id = item.Id_empleado })">
+                                        <i class='material-icons blue-text'>delete</i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Tbl_RXRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CARPETA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="URL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TITULO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ICON" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ACTIVO" Type="Boolean" />
+    <NavigationProperty Name="PAGINAs" Relationship="Self.FK_PAGINA_CARPETA" FromRole="CARPETA" ToRole="PAGINA" />
+  </EntityType>
+  <EntityType Name="ctl_Cliente">
+    <Key>
+      <PropertyRef Name="Id_Cliente" />
+    </Key>
+    <Property Name="Id_Cliente" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RazonSocial" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RazonComercial" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+    <Property Name="Direccion" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RFC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RFC_Direccion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RFC_Correo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Credito" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TiempoCredito" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Estatus" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ctl_ContactosCliente" Relationship="Self.FK_ctl_ContactosCliente_ctl_Cliente" FromRole="ctl_Cliente" ToRole="ctl_ContactosCliente" />
+    <NavigationProperty Name="ctl_Proyecto" Relationship="Self.FK_ctl_Proyecto_ctl_Cliente" FromRole="ctl_Cliente" ToRole="ctl_Proyecto" />
+    <NavigationProperty Name="ctl_SAP" Relationship="Self.FK_ctl_SAP_ctl_Cliente" FromRole="ctl_Cliente" ToRole="ctl_SAP" />
+  </EntityType>
+  <EntityType Name="ctl_ContactosCliente">
+    <Key>
+      <PropertyRef Name="Id_Cliente" />
+      <PropertyRef Name="Contacto" />
+    </Key>
+    <Property Name="Id_Cliente" Type="Int64" Nullable="false" />
+    <Property Name="Contacto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ctl_Cliente" Relationship="Self.FK_ctl_ContactosCliente_ctl_Cliente" FromRole="ctl_ContactosCliente" ToRole="ctl_Cliente" />
+  </EntityType>
+  <EntityType Name="ctl_Dia">
+    <Key>
+      <PropertyRef Name="id_Dia" />
+    </Key>
+    <Property Name="id_Dia" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idEmpleado" Type="Int64" Nullable="false" />
+    <Property Name="cargaxDiaI" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="horaI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="totHoras" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Explicacion" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="cargaxDiaF" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="horaF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="serviceO" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ctl_Empleado">
+    <Key>
+      <PropertyRef Name="Id_empleado" />
+    </Key>
+    <Property Name="Id_empleado" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ApellidoP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ApellidoM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Calle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NumExt" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="NumInt" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Colonia" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Tel_emergencia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Contacto_emergencia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="VacacionesN" Type="Int64" />
+    <Property Name="IMSS" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="CURP" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="INE_N" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Pasaporte_N" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Id_SAP" Type="Int64" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Estatus" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ctl_Login" Relationship="Self.FK_ctl_Login_ctl_Empleado" FromRole="ctl_Empleado" ToRole="ctl_Login" />
+    <NavigationProperty Name="ctl_Nomina" Relationship="Self.FK_ctl_Nomina_ctl_Empleado" FromRole="ctl_Empleado" ToRole="ctl_Nomina" />
+    <NavigationProperty Name="ctl_Proyecto" Relationship="Self.FK_ctl_Proyecto_ctl_Empleado" FromRole="ctl_Empleado" ToRole="ctl_Proyecto" />
+  </EntityType>
+  <EntityType Name="ctl_Login">
+    <Key>
+      <PropertyRef Name="Id_Empleado" />
+    </Key>
+    <Property Name="Id_Empleado" Type="Int64" Nullable="false" />
+    <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Pwd" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ultimo_Acceso" Type="DateTime" Precision="0" />
+    <Property Name="Sesion_Activa" Type="Boolean" />
+    <Property Name="Permisos" Type="Int32" Nullable="false" />
+    <Property Name="Estatus" Type="Boolean" />
+    <NavigationProperty Name="ctl_Empleado" Relationship="Self.FK_ctl_Login_ctl_Empleado" FromRole="ctl_Login" ToRole="ctl_Empleado" />
+  </EntityType>
+  <EntityType Name="ctl_Nomina">
+    <Key>
+      <PropertyRef Name="Id_Empleado" />
+    </Key>
+    <Property Name="Id_Empleado" Type="Int64" Nullable="false" />
+    <Property Name="Sueldo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Dias_Vacaciones" Type="Int64" Nullable="false" />
+    <Property Name="Bono_Monto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Dias_Asignados" Type="Int64" />
+    <Property Name="Dias_SAginacion" Type="Int64" />
+    <Property Name="Estatus" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ctl_Empleado" Relationship="Self.FK_ctl_Nomina_ctl_Empleado" FromRole="ctl_Nomina" ToRole="ctl_Empleado" />
+  </EntityType>
+  <EntityType Name="ctl_Proyecto">
+    <Key>
+      <PropertyRef Name="Id_Proyecto" />
+    </Key>
+    <Property Name="Id_Proyecto" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Cliente" Type="Int64" Nullable="false" />
+    <Property Name="Id_Empleado" Type="Int64" Nullable="false" />
+    <Property Name="Nombre_Proyecto" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Dias_Asignados" Type="Int64" Nullable="false" />
+    <Property Name="Horas_Asignadas" Type="Int64" Nullable="false" />
+    <Property Name="Costo_Dia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Costo_Tiempo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Fecha_Inicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Estatus" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ctl_Cliente" Relationship="Self.FK_ctl_Proyecto_ctl_Cliente" FromRole="ctl_Proyecto" ToRole="ctl_Cliente" />
+    <NavigationProperty Name="ctl_Empleado" Relationship="Self.FK_ctl_Proyecto_ctl_Empleado" FromRole="ctl_Proyecto" ToRole="ctl_Empleado" />
+  </EntityType>
+  <EntityType Name="ctl_SAP">
+    <Key>
+      <PropertyRef Name="id_ctlSap" />
+    </Key>
+    <Property Name="id_ctlSap" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Empleado" Type="Int64" Nullable="false" />
+    <Property Name="Id_SAP" Type="Int64" Nullable="false" />
+    <Property Name="Mes" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Servicio" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ubicacion" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Desc_CRM" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_Cliente" Type="Int64" Nullable="false" />
+    <Property Name="CW" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Fecha_Asignacion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Responsable_SAP" Type="Int64" Nullable="false" />
+    <Property Name="Cantidad_Dias" Type="Int64" Nullable="false" />
+    <Property Name="Service_Order" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="idWT" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="ctl_Cliente" Relationship="Self.FK_ctl_SAP_ctl_Cliente" FromRole="ctl_SAP" ToRole="ctl_Cliente" />
+  </EntityType>
+  <EntityType Name="ctl_WorkTime">
+    <Key>
+      <PropertyRef Name="id_WT" />
+    </Key>
+    <Property Name="id_WT" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_Cliente" Type="Int64" />
+    <Property Name="Id_Empleado" Type="Int64" Nullable="false" />
+    <Property Name="Id_Proyecto" Type="Int64" Nullable="false" />
+    <Property Name="Dias_Laborados" Type="Int64" />
+    <Property Name="Horas_Laboradas" Type="Int64" />
+    <Property Name="Asignacion_SAP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Id_Cargo" Type="String" MaxLength="90" FixedLength="false" Unicode="true" />
+    <Property Name="Fecha_Carga" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+    <Property Name="estatus" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="PAGINA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="URL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TITULO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CARPETA_ID" Type="Int32" />
+    <Property Name="ICON" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="MOSTRAR" Type="Boolean" Nullable="false" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="CARPETA" Relationship="Self.FK_PAGINA_CARPETA" FromRole="PAGINA" ToRole="CARPETA" />
+    <NavigationProperty Name="PAGINATs" Relationship="Self.FK_PAGINAT_PAGINA" FromRole="PAGINA" ToRole="PAGINAT" />
+  </EntityType>
+  <EntityType Name="PAGINAT">
+    <Key>
+      <PropertyRef Name="SPRAS_ID" />
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="SPRAS_ID" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="TXT50" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PAGINA" Relationship="Self.FK_PAGINAT_PAGINA" FromRole="PAGINAT" ToRole="PAGINA" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_PAGINA_CARPETA">
+    <End Role="CARPETA" Type="Self.CARPETA" Multiplicity="0..1" />
+    <End Role="PAGINA" Type="Self.PAGINA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CARPETA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PAGINA">
+        <PropertyRef Name="CARPETA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctl_ContactosCliente_ctl_Cliente">
+    <End Role="ctl_Cliente" Type="Self.ctl_Cliente" Multiplicity="1" />
+    <End Role="ctl_ContactosCliente" Type="Self.ctl_ContactosCliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctl_Cliente">
+        <PropertyRef Name="Id_Cliente" />
+      </Principal>
+      <Dependent Role="ctl_ContactosCliente">
+        <PropertyRef Name="Id_Cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctl_Proyecto_ctl_Cliente">
+    <End Role="ctl_Cliente" Type="Self.ctl_Cliente" Multiplicity="1" />
+    <End Role="ctl_Proyecto" Type="Self.ctl_Proyecto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctl_Cliente">
+        <PropertyRef Name="Id_Cliente" />
+      </Principal>
+      <Dependent Role="ctl_Proyecto">
+        <PropertyRef Name="Id_Cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctl_SAP_ctl_Cliente">
+    <End Role="ctl_Cliente" Type="Self.ctl_Cliente" Multiplicity="1" />
+    <End Role="ctl_SAP" Type="Self.ctl_SAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctl_Cliente">
+        <PropertyRef Name="Id_Cliente" />
+      </Principal>
+      <Dependent Role="ctl_SAP">
+        <PropertyRef Name="Id_Cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctl_Login_ctl_Empleado">
+    <End Role="ctl_Empleado" Type="Self.ctl_Empleado" Multiplicity="1" />
+    <End Role="ctl_Login" Type="Self.ctl_Login" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ctl_Empleado">
+        <PropertyRef Name="Id_empleado" />
+      </Principal>
+      <Dependent Role="ctl_Login">
+        <PropertyRef Name="Id_Empleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctl_Nomina_ctl_Empleado">
+    <End Role="ctl_Empleado" Type="Self.ctl_Empleado" Multiplicity="1" />
+    <End Role="ctl_Nomina" Type="Self.ctl_Nomina" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ctl_Empleado">
+        <PropertyRef Name="Id_empleado" />
+      </Principal>
+      <Dependent Role="ctl_Nomina">
+        <PropertyRef Name="Id_Empleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctl_Proyecto_ctl_Empleado">
+    <End Role="ctl_Empleado" Type="Self.ctl_Empleado" Multiplicity="1" />
+    <End Role="ctl_Proyecto" Type="Self.ctl_Proyecto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctl_Empleado">
+        <PropertyRef Name="Id_empleado" />
+      </Principal>
+      <Dependent Role="ctl_Proyecto">
+        <PropertyRef Name="Id_Empleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PAGINAT_PAGINA">
+    <End Role="PAGINA" Type="Self.PAGINA" Multiplicity="1" />
+    <End Role="PAGINAT" Type="Self.PAGINAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PAGINA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PAGINAT">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Tbl_RXREntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CARPETAs" EntityType="Self.CARPETA" />
+    <EntitySet Name="ctl_Cliente" EntityType="Self.ctl_Cliente" />
+    <EntitySet Name="ctl_ContactosCliente" EntityType="Self.ctl_ContactosCliente" />
+    <EntitySet Name="ctl_Dia" EntityType="Self.ctl_Dia" />
+    <EntitySet Name="ctl_Empleado" EntityType="Self.ctl_Empleado" />
+    <EntitySet Name="ctl_Login" EntityType="Self.ctl_Login" />
+    <EntitySet Name="ctl_Nomina" EntityType="Self.ctl_Nomina" />
+    <EntitySet Name="ctl_Proyecto" EntityType="Self.ctl_Proyecto" />
+    <EntitySet Name="ctl_SAP" EntityType="Self.ctl_SAP" />
+    <EntitySet Name="ctl_WorkTime" EntityType="Self.ctl_WorkTime" />
+    <EntitySet Name="PAGINAs" EntityType="Self.PAGINA" />
+    <EntitySet Name="PAGINATs" EntityType="Self.PAGINAT" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_PAGINA_CARPETA" Association="Self.FK_PAGINA_CARPETA">
+      <End Role="CARPETA" EntitySet="CARPETAs" />
+      <End Role="PAGINA" EntitySet="PAGINAs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctl_ContactosCliente_ctl_Cliente" Association="Self.FK_ctl_ContactosCliente_ctl_Cliente">
+      <End Role="ctl_Cliente" EntitySet="ctl_Cliente" />
+      <End Role="ctl_ContactosCliente" EntitySet="ctl_ContactosCliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctl_Proyecto_ctl_Cliente" Association="Self.FK_ctl_Proyecto_ctl_Cliente">
+      <End Role="ctl_Cliente" EntitySet="ctl_Cliente" />
+      <End Role="ctl_Proyecto" EntitySet="ctl_Proyecto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctl_SAP_ctl_Cliente" Association="Self.FK_ctl_SAP_ctl_Cliente">
+      <End Role="ctl_Cliente" EntitySet="ctl_Cliente" />
+      <End Role="ctl_SAP" EntitySet="ctl_SAP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctl_Login_ctl_Empleado" Association="Self.FK_ctl_Login_ctl_Empleado">
+      <End Role="ctl_Empleado" EntitySet="ctl_Empleado" />
+      <End Role="ctl_Login" EntitySet="ctl_Login" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctl_Nomina_ctl_Empleado" Association="Self.FK_ctl_Nomina_ctl_Empleado">
+      <End Role="ctl_Empleado" EntitySet="ctl_Empleado" />
+      <End Role="ctl_Nomina" EntitySet="ctl_Nomina" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctl_Proyecto_ctl_Empleado" Association="Self.FK_ctl_Proyecto_ctl_Empleado">
+      <End Role="ctl_Empleado" EntitySet="ctl_Empleado" />
+      <End Role="ctl_Proyecto" EntitySet="ctl_Proyecto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PAGINAT_PAGINA" Association="Self.FK_PAGINAT_PAGINA">
+      <End Role="PAGINA" EntitySet="PAGINAs" />
+      <End Role="PAGINAT" EntitySet="PAGINATs" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Tbl_RXRModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Tbl_RXRModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

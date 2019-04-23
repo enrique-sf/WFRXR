@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - RXR</title>
+    <link rel="SHORTCUT ICON" href="~/Content/Imagenes/web-page-icon.ico" />
+    <link href="~/Content/assets/css/animate.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <script src="~/Content/assets/js/jquery.3.2.1.min.js"></script>
+    @*<script src="~/Content/assets/js/bootstrap.min.js"></script>*@
+    <link href="~/Content/Shared/Shared.css" rel="stylesheet" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <script src="~/Scripts/Shared/Shared.js"></script>
+</head>
+<body>
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a href="#!">Información de @Session["uNombre"]</a></li>
+        <li><a href="@Url.Action("cSesion", "Login")">Cerrar Sesión</a></li>
+    </ul>
+    <div class="wrapper">
+        <div class="main-panel">
+            <div class="topnav" id="myTopnav">
+                @if (Session["permisos"].ToString() == "1")
+                {
+                    <a href="@Url.Action("Index", "Home")" class="activex"><i class='material-icons white-text'>home</i></a>
+                    <a href="@Url.Action("Index", "Empleado")">Administración de Empleados</a>
+                    <a href="@Url.Action("Index", "Cliente")">Administración de Clientes</a>
+                    <a href="@Url.Action("Index", "Proyecto")">Alta de Proyectos</a>
+                    <a href="@Url.Action("Index", "WorkTime")">Carga de días</a>
+                    <a href="@Url.Action("Descarga", "WorkTime")">Descarga Reporte</a>
+                }
+                else if (Session["permisos"].ToString() == "2")
+                {
+                    <a href="@Url.Action("Index", "Home")" class="activex"><i class='material-icons white-text'>home</i></a>
+                    <a href="@Url.Action("Index", "WorkTime")">Carga de días</a>
+                    <a href="@Url.Action("Descarga", "WorkTime")">Descarga Reporte</a>
+                }
+                <a style="float:right;" class="dropdown-trigger" href="#!" data-target="dropdown1">@Session["uNombre"]<i class="material-icons right">arrow_drop_down</i></a>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+
+            <div id="content">
+                @RenderBody()
+                <hr />
+                <footer class="footer">
+                    <p>&copy; @DateTime.Now.Year - RXR 1.0.0.0.1</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }   
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

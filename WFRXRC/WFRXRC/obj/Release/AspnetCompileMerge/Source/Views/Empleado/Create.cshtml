@@ -1,0 +1,276 @@
+﻿@model WFRXRC.Models.Mod_Empleado
+
+@{
+    //ViewBag.Title = "Create";
+    ViewBag.pagina_r = 202;
+    ViewBag.carpeta_r = 200;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .marginT {
+        margin-top: 25px;
+    }
+</style>
+@*<link href="~/Scripts/jquery-ui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui.js"></script>*@
+@*<link href="~/Scripts/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui.min.js"></script>*@
+@*<link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />*@
+
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+@if (ViewBag.errors != "")
+{
+    <script>
+$(document).ready(function () {
+    var message = '@ViewBag.errors';
+     if (message != "") {
+         errorMessage(message);
+     }
+     function errorMessage(msg) {
+         M.toast({ html: msg });
+     }
+});
+    </script>
+}
+
+<style>
+    .tabs .indicator {
+        background-color: #e3f2fd;
+    }
+
+    .tabs .tab a:focus, .tabs .tab a:focus.active {
+        background-color: transparent;
+    }
+</style>
+<div class="row">
+    <div class="col s12">
+        <ul class="tabs" id="tabs">
+            <li class="tab col s3"><a class="active blue-text text-lighten-1" href="#Datos_Empleado">Datos Empleado</a></li>
+            <li class="tab col s3"><a class="blue-text text-lighten-1" href="#NominaD">Nomina</a></li>
+            <li class="tab col s3"><a class="blue-text text-lighten-1" href="#DUsuario">Usuario</a></li>
+        </ul>
+    </div>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        @*DATOS EMPLEADO*@
+        <div id="Datos_Empleado" style="font-size:12px;">
+            <div class="row">
+                <div class="col l6 s12">
+                    <div class="card-panel">
+                        <div class="row" style="margin-bottom:0">
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.Nombre, "Nombre", htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.ApellidoP, "Apellido Paterno", htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.ApellidoP, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom:0">
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.ApellidoM, "Apellido Materno", htmlAttributes: new { })
+                                @Html.EditorFor(model => model.ApellidoM, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.FechaNacimiento, "Fecha de Nacimiento", htmlAttributes: new { @class = "active" })
+                                @Html.EditorFor(model => model.FechaNacimiento, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <script>
+                            var elemdp = document.querySelector('#FechaNacimiento');
+                            var optionsdp = {
+                                format: 'dd/mm/yyyy',
+                                onClose: function (e) {
+                                },
+                                i18n: {
+                                    clear: 'Limpiar',
+                                    today: 'Hoy',
+                                    done: 'Seleccionar',
+                                    previousMonth: '‹',
+                                    nextMonth: '›',
+                                    months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                    monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                                    weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                                    weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                                    weekdaysAbbrev: ['D', 'L', 'M', 'X', 'J', 'V', 'S']
+                                }
+                            };
+                            var instancedp = M.Datepicker.init(elemdp, optionsdp);
+
+                        </script>
+                        <div class="row" style="margin-bottom:0">
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.Calle, "Calle", htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Calle, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.NumExt, "Número Exterior", htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.NumExt, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom:0">
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.NumInt, "Número Interior", htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.NumInt, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.Colonia, "Colonia", htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Colonia, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom:0">
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.Ciudad, "Ciudad", htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Ciudad, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.CURP, "CURP", htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.CURP, new { htmlAttributes = new { @class = "form-control curp" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l6 s12">
+                    <div class="card-panel">
+                        <div class="row" style="margin-bottom:0">
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.Contacto_emergencia, "Contacto de Emergencia", htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Contacto_emergencia, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.FechaIngreso, "Fecha de Ingreso", htmlAttributes: new { @class = "active" })
+                                @Html.EditorFor(model => model.FechaIngreso, new { htmlAttributes = new { @class = "form-control" } })
+                                <input type="hidden" id="_fechaIng" name="_fechaIng" />
+                            </div>
+                        </div>
+                        <script>
+                            var elemdp = document.querySelector('#FechaIngreso');
+                            var optionsdp = {
+                                format: 'dd/mm/yyyy',
+                                onClose: function (e) {
+                                },
+                                i18n: {
+                                    clear: 'Limpiar',
+                                    today: 'Hoy',
+                                    done: 'Seleccionar',
+                                    previousMonth: '‹',
+                                    nextMonth: '›',
+                                    months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                    monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                                    weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                                    weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                                    weekdaysAbbrev: ['D', 'L', 'M', 'X', 'J', 'V', 'S']
+                                }
+                            };
+                            var instancedp = M.Datepicker.init(elemdp, optionsdp);
+
+                        </script>
+                        <div class="row" style="margin-bottom:0">
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.IMSS, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.IMSS, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.Tel_emergencia, "Telefono de Emergencia", htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Tel_emergencia, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom:0">
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.INE_N, "No. INE", htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.INE_N, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.Pasaporte_N, "No. Pasaporte", htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Pasaporte_N, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*//*@
+        <div id="NominaD">
+            <div class="row">
+                <div class="col s6">
+                    <div class="card-panel">
+                        <div class="row" style="margin-bottom:0">
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.Sueldo, "Sueldo", htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Sueldo, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.Dias_Vacaciones, "Vacaciones", htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Dias_Vacaciones, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom:0">
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.Bono_Monto, "Bono", htmlAttributes: new { })
+                                @Html.EditorFor(model => model.Bono_Monto, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.Dias_Asignados, "Dias Asignados", htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Dias_Asignados, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom:0">
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.Dias_SAginacion, "Dias Sin Asignación", htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Dias_SAginacion, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*//*@
+        <div id="DUsuario">
+            <div class="row">
+                <div class="col s12 right-align" style="margin-right: 1%;">
+                    <input type="submit" value="Crear" class="btn btn-default" id="btn_guardar" style="display:none; float:right;" />
+                    <input type="button" value="Crear" class="btn btn-default" id="btn_guardarh" style="float:right;" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    <div class="card-panel">
+                        <div class="row" style="margin-bottom:0">
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @type = "email" } })
+                            </div>
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.Usuario, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom:0">
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.Pwd, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Pwd, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                            </div>
+                            <div class="input-field col s6">
+                                @Html.LabelFor(model => model.PERFIL, htmlAttributes: new { @class = "active" })
+                                @Html.DropDownList("PERFIL", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script src="~/Scripts/EmpleadoJs.js"></script>

@@ -1,0 +1,99 @@
+﻿@model IEnumerable<WFRXRC.Entities.ctl_WorkTime>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />*@
+<script src="~/Scripts/WT/Index.js"></script>
+<style>
+    .tabs .indicator {
+        background-color: #e3f2fd;
+    }
+
+    .tabs .tab a:focus, .tabs .tab a:focus.active {
+        background-color: transparent;
+    }
+
+    .mr {
+        margin-right: .5%;
+    }
+</style>
+<div>
+    <div class="col s12 right-align mr">
+        <p>
+            @Html.ActionLink("Crear", "Create", null, null, new { @class = "btn btn-primary", @id = "btn_create" })
+        </p>
+    </div>
+</div>
+
+<div id="List">
+    <div class="row">
+        <div class="col s12">
+            <div class="card-panel">
+                <div class="row" style="margin-bottom:0">
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.id_WT)*@
+                                ID
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.Fecha_Carga)*@
+                                Fecha de Carga
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.Id_Empleado)*@
+                                Id Empleado
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.Id_Cargo)*@
+                                Estado
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.id_WT)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Fecha_Carga)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id_Empleado)
+                                </td>
+                                @if (item.Id_Cargo != null)
+                                {
+                                    <td bgcolor="#5cb85c">Terminado</td>
+                                }
+                                else
+                                {
+                                    <td bgcolor="#ec971f">Por Terminar</td>
+                                }
+                                @if (item.Id_Cargo != null)
+                                {
+                                    <td>
+                                        @Html.ActionLink("Details", "Details", new { id = item.id_WT }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.id_WT })
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.id_WT }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.id_WT }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.id_WT })
+                                    </td>
+                                }
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

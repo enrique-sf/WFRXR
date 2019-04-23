@@ -1,0 +1,377 @@
+﻿@model WFRXRC.Entities.ctl_WorkTime
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Objeto devuelto
+    var tas = (string)ViewBag.tasig;
+    var finicio = (string)ViewBag.finicio;
+    var ffin = (string)ViewBag.ffin;
+    var asig = (string)ViewBag.asig;
+
+    WFRXRC.Entities.ctl_SAP sap = ViewBag.OSap;
+
+}
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<script src="~/Scripts/WT/Edit.js"></script>
+
+
+<style>
+    .tabs .indicator {
+        background-color: #e3f2fd;
+    }
+
+    .tabs .tab a:focus, .tabs .tab a:focus.active {
+        background-color: transparent;
+    }
+</style>
+
+<div class="row">
+    <div class="col s12">
+        <ul class="tabs" id="tabs">
+            <li class="tab col s3"><a class="active blue-text text-lighten-1" href="#Conf">Tipo de Asignación</a></li>
+            <li class="tab col s3"><a class="blue-text text-lighten-1" href="#DLoad">Asignación</a></li>
+        </ul>
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id_Empleado)
+        @Html.HiddenFor(model => model.Id_Proyecto)
+        @Html.HiddenFor(model => model.id_WT)
+
+        <div style="overflow:auto">
+            <div id="Conf">
+                <div class="row">
+                    <div class="col l6 m7 s12 ">
+                        <div class="card-panel">
+                            <div class="row" style="margin-bottom:0">
+                                <div class="input-field col s6">
+                                    @if (ViewBag.tasig == "0" || ViewBag.tasig == "1" || ViewBag.tasig == "2")
+                                    {
+                                        <input type="text" value="SIN ASIGNACIÓN" disabled />
+                                    }
+                                    else
+                                    {
+                                        <input type="text" value="ASIGNACIÓN SAP" disabled />
+                                    }
+                                    <label>TIPO DE ASIGNACIÓN</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l6 m7 s12">
+                        <div class="card-panel">
+                            <div class="row" style="margin-bottom:0;">
+                                <h5>Descarga Reporte</h5>
+                                <label>Parametros de descarga</label>
+                                <div class="input-field col s4">
+                                    <p>
+                                        <label>
+                                            <input name="group1" type="radio" checked />
+                                            <span>Mes</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label>
+                                            <input name="group1" type="radio" />
+                                            <span>Periodo</span>
+                                        </label>
+                                    </p>
+                                </div>
+                                <div id="xMes" style="display:none;">
+                                    <div class="input-field col s4">
+                                        <select id='mes'>
+                                            <option value='1'>Enero</option>
+                                            <option value='2'>Febrero</option>
+                                            <option value='3'>Marzo</option>
+                                            <option value='4'>Abril</option>
+                                            <option value='5'>Mayo</option>
+                                            <option value='6'>Junio</option>
+                                            <option value='7'>Julio</option>
+                                            <option value='8'>Agosto</option>
+                                            <option value='9'>Septiembre</option>
+                                            <option value='10'>Octubre</option>
+                                            <option value='11'>Noviembre</option>
+                                            <option value='12'>Diciembre</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <input type="text" id="xmesaño" />
+                                        <label for="xmesaño">Año</label>
+                                    </div>
+                                </div>
+                                <div id="xPeriodo" style="display:block;">
+                                    <div class="input-field col s7">
+                                        <div class="input-field col s6">
+                                            <input type="text" id="xpI" />
+                                            <label for="xpI">De</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <input type="text" id="xpF" />
+                                            <label for="xpF">Hasta</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom:0">
+                                    <div class="input-field col s12">
+                                        <input id="btnDReporte" type="button" value="Descargar" class="btn btn-default">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="DLoad">
+                <div style="overflow:auto;">
+                    @if (tas == "0" || tas == "1" || tas == "2")
+                    {
+                        <div id="SASAP">
+                            <div class="row">
+                                <div class="col l6 m7 s12 ">
+                                    <div class="card-panel">
+                                        <div class="row" style="margin-bottom:0">
+                                            <div class="input-field col s6">
+                                                <input id="FInicio" type="text" class="validate" value="x">
+                                                <label for="FInicio" class="active">Fecha Inicio</label>
+                                                <input type="hidden" id="_fi" value="@finicio" />
+                                            </div>
+                                            <script>
+                                                var elemdp = document.querySelector('#FInicio');
+                                                var optionsdp = {
+                                                    format: 'dd/mm/yyyy',
+                                                    onClose: function (e) {
+                                                    },
+                                                    i18n: {
+                                                        clear: 'Limpiar',
+                                                        today: 'Hoy',
+                                                        done: 'Seleccionar',
+                                                        previousMonth: '‹',
+                                                        nextMonth: '›',
+                                                        months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                                        monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                                                        weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                                                        weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                                                        weekdaysAbbrev: ['D', 'L', 'M', 'X', 'J', 'V', 'S']
+                                                    }
+                                                };
+                                                var instancedp = M.Datepicker.init(elemdp, optionsdp);
+                                            </script>
+                                            <div class="input-field col s6">
+                                                <input id="FTermino" type="text" class="validate valFec" value="@ffin">
+                                                <label for="FTermino">Fecha Termino</label>
+                                            </div>
+                                            <script>
+                                                var elemdp = document.querySelector('#FTermino');
+                                                var optionsdp = {
+                                                    format: 'dd/mm/yyyy',
+                                                    onClose: function (e) {
+                                                    },
+                                                    i18n: {
+                                                        clear: 'Limpiar',
+                                                        today: 'Hoy',
+                                                        done: 'Seleccionar',
+                                                        previousMonth: '‹',
+                                                        nextMonth: '›',
+                                                        months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                                        monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                                                        weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                                                        weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                                                        weekdaysAbbrev: ['D', 'L', 'M', 'X', 'J', 'V', 'S']
+                                                    }
+                                                };
+                                                var instancedp = M.Datepicker.init(elemdp, optionsdp);
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col l6 m7 s12 ">
+                                    <div class="card-panel">
+                                        <div class="row" style="margin-bottom:0">
+                                            <div class="input-field col s6">
+                                                @*<select id="sProy"></select>*@
+                                                @Html.DropDownList("proyecto", null, htmlAttributes: new { @class = "form-control" })
+                                                <label>Elegir Proyecto</label>
+                                            </div>
+                                            <div class="input-field col s3" style="display:none">
+                                                <select id="timeI"></select>
+                                                <label for="timeI">Hora Inicio</label>
+                                            </div>
+                                            <div class="input-field col s3" style="display:none">
+                                                <select id="timeF"></select>
+                                                <label for="timeF">Hora Termino</label>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-bottom:0">
+                                            <div class="input-field col s6" style="display:none;">
+                                                <input id="idcarga" type="text" class="validate">
+                                                <label for="idcarga">ID Carga</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input id="AsSAP" type="text" class="validate" value="@asig" disabled>
+                                                <label for="AsSAP">Asignación Sap</label>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-bottom:0">
+                                            <div class="input-field col s3">
+                                                <input id="btnSaveSASAP" type="button" value="Guardar" class="btn btn-default">
+                                            </div>
+                                            <div class="input-field col s3">
+                                                <input id="btnTerminarSASAP" type="button" value="terminar" class="btn btn-default">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div id="ASAP">
+                            <div class="row">
+                                <div class="col l6 m7 s12 ">
+                                    <div class="card-panel">
+                                        <div class="row" style="margin-bottom:0">
+                                            <div class="input-field col s6">
+                                                <input id="FInicio2" type="text" class="validate">
+                                                <label for="FInicio2" class="active">Fecha Inicio</label>
+                                                <input type="hidden" id="_fi2" value="@finicio" />
+                                            </div>
+                                            <script>
+                                                var elemdp = document.querySelector('#FInicio2');
+                                                var optionsdp = {
+                                                    format: 'dd/mm/yyyy',
+                                                    onClose: function (e) {
+                                                    },
+                                                    i18n: {
+                                                        clear: 'Limpiar',
+                                                        today: 'Hoy',
+                                                        done: 'Seleccionar',
+                                                        previousMonth: '‹',
+                                                        nextMonth: '›',
+                                                        months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                                        monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                                                        weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                                                        weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                                                        weekdaysAbbrev: ['D', 'L', 'M', 'X', 'J', 'V', 'S']
+                                                    }
+                                                };
+                                                var instancedp = M.Datepicker.init(elemdp, optionsdp);
+                                            </script>
+                                            <div class="input-field col s6">
+                                                <input id="FTermino2" type="text" class="validate valFec" value="@ffin">
+                                                <label for="FTermino2">Fecha Termino</label>
+                                            </div>
+                                            <script>
+                                                var elemdp = document.querySelector('#FTermino2');
+                                                var optionsdp = {
+                                                    format: 'dd/mm/yyyy',
+                                                    onClose: function (e) {
+                                                    },
+                                                    i18n: {
+                                                        clear: 'Limpiar',
+                                                        today: 'Hoy',
+                                                        done: 'Seleccionar',
+                                                        previousMonth: '‹',
+                                                        nextMonth: '›',
+                                                        months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                                        monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                                                        weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                                                        weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                                                        weekdaysAbbrev: ['D', 'L', 'M', 'X', 'J', 'V', 'S']
+                                                    }
+                                                };
+                                                var instancedp = M.Datepicker.init(elemdp, optionsdp);
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col l6 m7 s12 ">
+                                    <div class="card-panel">
+                                        <div class="row" style="margin-bottom:0">
+                                            <div class="input-field col s6">
+                                                @Html.DropDownList("lstProyectos", null, htmlAttributes: new { @class = "form-control" })
+                                                <label>Proyecto SAP</label>
+                                            </div>
+                                            <div class="input-field col s3">
+                                                <select id="timeI2"></select>
+                                                <label for="timeI2">Hora Inicio</label>
+                                            </div>
+                                            <div class="input-field col s3">
+                                                <select id="timeF2"></select>
+                                                <label for="timeF2">Hora Termino</label>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-bottom:0">
+                                            <div class="input-field col s6" style="display:none;">
+                                                <input id="idcarga" type="text" class="validate">
+                                                <label for="idcarga">ID Carga</label>
+                                            </div>
+                                            <div class="input-field col s9">
+                                                <input id="aservice" type="text" class="validate" value="@sap.Servicio">
+                                                <label for="aservice">Servicio</label>
+                                            </div>
+                                            <div class="input-field col s3">
+                                                <input id="acw" type="text" class="validate" value="@sap.CW">
+                                                <label for="acw">CW</label>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-bottom:0">
+                                            <div class="input-field col s6">
+                                                <input id="ubicacion" type="text" class="validate" value="@sap.Ubicacion">
+                                                <label for="ubicacion">UBICACIÓN</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input id="descCRM" type="text" class="validate" value="@sap.Desc_CRM">
+                                                <label for="descCRM">Descripción CRM</label>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-bottom:0">
+                                            <div class="input-field col s6">
+                                                @Html.DropDownList("lstClientes", null, htmlAttributes: new { @class = "form-control" })
+                                                <label for="sCliente">Cliente</label>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-bottom:0">
+                                            <div class="input-field col s6">
+                                                <input id="Rsap" type="text" class="validate" value=" @sap.Responsable_SAP">
+                                                <label for="Rsap">Nombre TQM</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input id="servOrd" type="text" class="validate" value="@sap.Service_Order">
+                                                <label for="servOrd">Service Order</label>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-bottom:0">
+                                            <div class="input-field col s3">
+                                                <input id="btnSaveSASAP2" type="button" value="Guardar" class="btn btn-default">
+                                            </div>
+                                            <div class="input-field col s3">
+                                                <input id="btnTerminarSASAP2" type="button" value="terminar" class="btn btn-default">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

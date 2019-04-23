@@ -1,0 +1,308 @@
+﻿@model WFRXRC.Entities.ctl_WorkTime
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var idU = Session["idU"];
+}
+
+@* CSS *@
+@*<link href="~/Content/WT/jquery-ui-1.8.11.custom.css" rel="stylesheet" />
+    <link href="~/Content/WT/jquery.weekcalendar.css" rel="stylesheet" />*@
+@* JS *@
+@*<script src="~/Scripts/WC/jquery-1.4.4.min.js"></script>
+    <script src="~/Scripts/WC/jquery-ui-1.8.11.custom.min.js"></script>
+    <script src="~/Scripts/WC/date.js"></script>
+    <script src="~/Scripts/WC/jquery.weekcalendar.js"></script>*@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<script src="~/Scripts/WT/Crear.js"></script>
+@*<link href="~/Content/Shared/Reset.css" rel="stylesheet" />*@
+
+<style>
+    .tabs .indicator {
+        background-color: #e3f2fd;
+    }
+
+    .tabs .tab a:focus, .tabs .tab a:focus.active {
+        background-color: transparent;
+    }
+</style>
+@*//-----Para guardar el id del usuario en turno-----\\*@
+<input type="hidden" id="idH" value="@idU"/>
+
+<div class="row">
+    <div class="col s12">
+        <ul class="tabs" id="tabs">
+            <li class="tab col s3"><a class="active blue-text text-lighten-1" href="#Conf">Seleccionar Asignación</a></li>
+            <li class="tab col s3"><a class="blue-text text-lighten-1" id="cargaR" href="#DLoad">Carga de Asignación</a></li>
+        </ul>
+    </div>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div style="overflow:auto">
+        <div id="Conf">
+            <div class="row">
+                <div class="col l6 m7 s12 ">
+                    <div class="card-panel"  style="margin-top:6%;margin-bottom:10%">
+                        <div class="row" style="margin-bottom:0">
+                            <div class="input-field col s12">
+                                <select id="SelASAp">
+                                    <option value="0" disabled selected>ELEGIR OPCIÓN</option>
+                                    <option value="1">ASIGNACIÓN SAP</option>
+                                    <option value="2">SIN ASIGNACIÓN</option>
+                                </select>
+                                <label>ELEGIR TIPO DE ASIGNACIÓN</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="DLoad">
+            <div style="overflow:auto;">
+                <div id="SASAP" style="display:none">
+                    <div class="row">
+                        <div class="col l6 m7 s12 ">
+                            <div class="card-panel">
+                                <div class="row" style="margin-bottom:0">
+                                    <div class="input-field col s6">
+                                        <input id="FInicio" type="text" class="validate">
+                                        <label for="FInicio">Fecha Inicio</label>
+                                    </div>
+                                    <script>
+                                        var elemdp = document.querySelector('#FInicio');
+                                        var optionsdp = {
+                                            format: 'dd/mm/yyyy',
+                                            onClose: function (e) {
+                                            },
+                                            i18n: {
+                                                clear: 'Limpiar',
+                                                today: 'Hoy',
+                                                done: 'Seleccionar',
+                                                previousMonth: '‹',
+                                                nextMonth: '›',
+                                                months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                                monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                                                weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                                                weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                                                weekdaysAbbrev: ['D', 'L', 'M', 'X', 'J', 'V', 'S']
+                                            }
+                                        };
+                                        var instancedp = M.Datepicker.init(elemdp, optionsdp);
+                                    </script>
+                                    <div class="input-field col s6">
+                                        <input id="FTermino" type="text" class="validate valFec">
+                                        <label for="FTermino">Fecha Termino</label>
+                                    </div>
+                                    <script>
+                                        var elemdp = document.querySelector('#FTermino');
+                                        var optionsdp = {
+                                            format: 'dd/mm/yyyy',
+                                            onClose: function (e) {
+                                            },
+                                            i18n: {
+                                                clear: 'Limpiar',
+                                                today: 'Hoy',
+                                                done: 'Seleccionar',
+                                                previousMonth: '‹',
+                                                nextMonth: '›',
+                                                months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                                monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                                                weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                                                weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                                                weekdaysAbbrev: ['D', 'L', 'M', 'X', 'J', 'V', 'S']
+                                            }
+                                        };
+                                        var instancedp = M.Datepicker.init(elemdp, optionsdp);
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col l6 m7 s12 ">
+                            <div class="card-panel">
+                                <div class="row" style="margin-bottom:0">
+                                    <div class="input-field col s6">
+                                        <select id="sProy">
+                                            <option value="99" disabled selected>Elegir Opción</option>
+                                            <option value="0">No Asignado</option>
+                                            <option value="1">Vacaciones</option>
+                                            <option value="2">Incapacidad</option>
+                                        </select>
+                                        <label>Elegir Proyecto</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <select id="timeI"></select>
+                                        <label for="timeI">Hora Inicio</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <select id="timeF"></select>
+                                        <label for="timeF">Hora Termino</label>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom:0">
+                                    <div class="input-field col s6" style="display:none;">
+                                        <input id="idcarga" type="text" class="validate">
+                                        <label for="idcarga">ID Carga</label>
+                                    </div>
+                                    <div class="input-field col s6" style="display:none;">
+                                        <input id="AsSAP" type="text" class="validate">
+                                        <label for="AsSAP">Asignación Sap</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <select id="sacliente" disabled></select>
+                                        <label for="AsSAP">Cliente</label>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom:0">
+                                    <div class="input-field col s3">
+                                        <input id="btnSaveSASAP" type="button" value="Guardar" class="btn btn-default">
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <input id="btnTerminarSASAP" type="button" value="terminar" class="btn btn-default">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="ASAP" style="display:none">
+                    <div class="row">
+                        <div class="col l6 m7 s12 ">
+                            <div class="card-panel">
+                                <div class="row" style="margin-bottom:0">
+                                    <div class="input-field col s6">
+                                        <input id="FInicio2" type="text" class="validate">
+                                        <label for="FInicio2">Fecha Inicio</label>
+                                    </div>
+                                    <script>
+                                        var elemdp = document.querySelector('#FInicio2');
+                                        var optionsdp = {
+                                            format: 'dd/mm/yyyy',
+                                            onClose: function (e) {
+                                            },
+                                            i18n: {
+                                                clear: 'Limpiar',
+                                                today: 'Hoy',
+                                                done: 'Seleccionar',
+                                                previousMonth: '‹',
+                                                nextMonth: '›',
+                                                months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                                monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                                                weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                                                weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                                                weekdaysAbbrev: ['D', 'L', 'M', 'X', 'J', 'V', 'S']
+                                            }
+                                        };
+                                        var instancedp = M.Datepicker.init(elemdp, optionsdp);
+                                    </script>
+                                    <div class="input-field col s6">
+                                        <input id="FTermino2" type="text" class="validate valFec">
+                                        <label for="FTermino2">Fecha Termino</label>
+                                    </div>
+                                    <script>
+                                        var elemdp = document.querySelector('#FTermino2');
+                                        var optionsdp = {
+                                            format: 'dd/mm/yyyy',
+                                            onClose: function (e) {
+                                            },
+                                            i18n: {
+                                                clear: 'Limpiar',
+                                                today: 'Hoy',
+                                                done: 'Seleccionar',
+                                                previousMonth: '‹',
+                                                nextMonth: '›',
+                                                months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                                monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                                                weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                                                weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                                                weekdaysAbbrev: ['D', 'L', 'M', 'X', 'J', 'V', 'S']
+                                            }
+                                        };
+                                        var instancedp = M.Datepicker.init(elemdp, optionsdp);
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col l6 m7 s12 ">
+                            <div class="card-panel">
+                                <div class="row" style="margin-bottom:0">
+                                    <div class="input-field col s6">
+                                        <select id="ddlProy">
+                                            <option value="99" disabled selected>Elegir Opción</option>
+                                        </select>
+                                        <label>Proyecto SAP</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <select id="timeI2"></select>
+                                        <label for="timeI2">Hora Inicio</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <select id="timeF2"></select>
+                                        <label for="timeF2">Hora Termino</label>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom:0">
+                                    <div class="input-field col s6" style="display:none;">
+                                        <input id="idcarga" type="text" class="validate">
+                                        <label for="idcarga">ID Carga</label>
+                                    </div>
+                                    <div class="input-field col s9">
+                                        <input id="aservice" type="text" class="validate">
+                                        <label for="aservice">Servicio</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <input id="acw" type="text" class="validate">
+                                        <label for="acw">CW</label>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom:0">
+                                    <div class="input-field col s6">
+                                        <input id="ubicacion" type="text" class="validate">
+                                        <label for="ubicacion">UBICACIÓN</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="descCRM" type="text" class="validate">
+                                        <label for="descCRM">Descripción CRM</label>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom:0">
+                                    <div class="input-field col s8">
+                                        <select id="sCliente"></select>
+                                        <label for="sCliente">Cliente</label>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom:0">
+                                    <div class="input-field col s6">
+                                        <input id="resSap" type="text" class="validate">
+                                        <label for="resSap">Nombre TQM</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="servOrd" type="text" class="validate">
+                                        <label for="servOrd">Service Order</label>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom:0">
+                                    <div class="input-field col s3">
+                                        <input id="btnSaveSASAP2" type="button" value="Guardar" class="btn btn-default">
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <input id="btnTerminarSASAP2" type="button" value="terminar" class="btn btn-default">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Tbl_RXRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CARPETA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="URL" Type="nvarchar" MaxLength="50" />
+    <Property Name="TITULO" Type="nvarchar" MaxLength="50" />
+    <Property Name="ICON" Type="nvarchar" MaxLength="20" />
+    <Property Name="ACTIVO" Type="bit" />
+  </EntityType>
+  <EntityType Name="ctl_Cliente">
+    <Key>
+      <PropertyRef Name="Id_Cliente" />
+    </Key>
+    <Property Name="Id_Cliente" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RazonSocial" Type="nvarchar" MaxLength="99" Nullable="false" />
+    <Property Name="RazonComercial" Type="nvarchar" MaxLength="99" />
+    <Property Name="Direccion" Type="nvarchar" MaxLength="99" Nullable="false" />
+    <Property Name="Telefono" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="RFC" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="RFC_Direccion" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="RFC_Correo" Type="nvarchar" MaxLength="20" />
+    <Property Name="Credito" Type="nvarchar" MaxLength="50" />
+    <Property Name="TiempoCredito" Type="nvarchar" MaxLength="50" />
+    <Property Name="Estatus" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ctl_ContactosCliente">
+    <Key>
+      <PropertyRef Name="Id_Cliente" />
+      <PropertyRef Name="Contacto" />
+    </Key>
+    <Property Name="Id_Cliente" Type="bigint" Nullable="false" />
+    <Property Name="Contacto" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ctl_Dia">
+    <Key>
+      <PropertyRef Name="id_Dia" />
+    </Key>
+    <Property Name="id_Dia" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idEmpleado" Type="bigint" Nullable="false" />
+    <Property Name="cargaxDiaI" Type="date" Nullable="false" />
+    <Property Name="horaI" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="totHoras" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Explicacion" Type="nvarchar" MaxLength="99" Nullable="false" />
+    <Property Name="cargaxDiaF" Type="date" Nullable="false" />
+    <Property Name="horaF" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="titulo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="serviceO" Type="nvarchar" MaxLength="99" />
+  </EntityType>
+  <EntityType Name="ctl_Empleado">
+    <Key>
+      <PropertyRef Name="Id_empleado" />
+    </Key>
+    <Property Name="Id_empleado" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="70" Nullable="false" />
+    <Property Name="ApellidoP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ApellidoM" Type="nvarchar" MaxLength="50" />
+    <Property Name="FechaNacimiento" Type="date" Nullable="false" />
+    <Property Name="Calle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NumExt" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="NumInt" Type="nchar" MaxLength="10" />
+    <Property Name="Colonia" Type="nvarchar" MaxLength="70" Nullable="false" />
+    <Property Name="Ciudad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Tel_emergencia" Type="nvarchar" MaxLength="50" />
+    <Property Name="Contacto_emergencia" Type="nvarchar" MaxLength="50" />
+    <Property Name="FechaIngreso" Type="date" Nullable="false" />
+    <Property Name="VacacionesN" Type="bigint" />
+    <Property Name="IMSS" Type="nvarchar" MaxLength="11" />
+    <Property Name="CURP" Type="nvarchar" MaxLength="18" Nullable="false" />
+    <Property Name="INE_N" Type="nvarchar" MaxLength="25" />
+    <Property Name="Pasaporte_N" Type="nvarchar" MaxLength="50" />
+    <Property Name="Id_SAP" Type="bigint" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="Estatus" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ctl_Login">
+    <Key>
+      <PropertyRef Name="Id_Empleado" />
+    </Key>
+    <Property Name="Id_Empleado" Type="bigint" Nullable="false" />
+    <Property Name="Usuario" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Pwd" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Ultimo_Acceso" Type="date" />
+    <Property Name="Sesion_Activa" Type="bit" />
+    <Property Name="Permisos" Type="int" Nullable="false" />
+    <Property Name="Estatus" Type="bit" />
+  </EntityType>
+  <EntityType Name="ctl_Nomina">
+    <Key>
+      <PropertyRef Name="Id_Empleado" />
+    </Key>
+    <Property Name="Id_Empleado" Type="bigint" Nullable="false" />
+    <Property Name="Sueldo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Dias_Vacaciones" Type="bigint" Nullable="false" />
+    <Property Name="Bono_Monto" Type="nvarchar" MaxLength="50" />
+    <Property Name="Dias_Asignados" Type="bigint" />
+    <Property Name="Dias_SAginacion" Type="bigint" />
+    <Property Name="Estatus" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Tbl_RXR.dbo.ctl_Perfil' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="ctl_Perfil">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ctl_Proyecto">
+    <Key>
+      <PropertyRef Name="Id_Proyecto" />
+    </Key>
+    <Property Name="Id_Proyecto" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Cliente" Type="bigint" Nullable="false" />
+    <Property Name="Id_Empleado" Type="bigint" Nullable="false" />
+    <Property Name="Nombre_Proyecto" Type="nvarchar" MaxLength="99" Nullable="false" />
+    <Property Name="Dias_Asignados" Type="bigint" Nullable="false" />
+    <Property Name="Horas_Asignadas" Type="bigint" Nullable="false" />
+    <Property Name="Costo_Dia" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Costo_Tiempo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Fecha_Inicio" Type="date" Nullable="false" />
+    <Property Name="Estatus" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ctl_SAP">
+    <Key>
+      <PropertyRef Name="id_ctlSap" />
+    </Key>
+    <Property Name="id_ctlSap" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Empleado" Type="bigint" Nullable="false" />
+    <Property Name="Id_SAP" Type="bigint" Nullable="false" />
+    <Property Name="Mes" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Servicio" Type="nvarchar" MaxLength="99" Nullable="false" />
+    <Property Name="Ubicacion" Type="nvarchar" MaxLength="99" Nullable="false" />
+    <Property Name="Desc_CRM" Type="nvarchar" MaxLength="99" Nullable="false" />
+    <Property Name="Id_Cliente" Type="bigint" Nullable="false" />
+    <Property Name="CW" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Fecha_Asignacion" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Responsable_SAP" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Cantidad_Dias" Type="bigint" Nullable="false" />
+    <Property Name="Service_Order" Type="nvarchar" MaxLength="99" Nullable="false" />
+    <Property Name="idWT" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ctl_WorkTime">
+    <Key>
+      <PropertyRef Name="id_WT" />
+    </Key>
+    <Property Name="id_WT" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_Cliente" Type="bigint" />
+    <Property Name="Id_Empleado" Type="bigint" Nullable="false" />
+    <Property Name="Id_Proyecto" Type="bigint" Nullable="false" />
+    <Property Name="Dias_Laborados" Type="bigint" />
+    <Property Name="Horas_Laboradas" Type="bigint" />
+    <Property Name="Asignacion_SAP" Type="nvarchar" MaxLength="50" />
+    <Property Name="Id_Cargo" Type="nvarchar" MaxLength="90" />
+    <Property Name="Fecha_Carga" Type="nvarchar" MaxLength="99" />
+    <Property Name="estatus" Type="bit" />
+  </EntityType>
+  <EntityType Name="PAGINA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="URL" Type="nvarchar" MaxLength="255" />
+    <Property Name="TITULO" Type="nvarchar" MaxLength="50" />
+    <Property Name="CARPETA_ID" Type="int" />
+    <Property Name="ICON" Type="nvarchar" MaxLength="20" />
+    <Property Name="MOSTRAR" Type="bit" Nullable="false" />
+    <Property Name="ACTIVO" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PAGINAT">
+    <Key>
+      <PropertyRef Name="SPRAS_ID" />
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="SPRAS_ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="TXT50" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_ctl_ContactosCliente_ctl_Cliente">
+    <End Role="ctl_Cliente" Type="Self.ctl_Cliente" Multiplicity="1" />
+    <End Role="ctl_ContactosCliente" Type="Self.ctl_ContactosCliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctl_Cliente">
+        <PropertyRef Name="Id_Cliente" />
+      </Principal>
+      <Dependent Role="ctl_ContactosCliente">
+        <PropertyRef Name="Id_Cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctl_Login_ctl_Empleado">
+    <End Role="ctl_Empleado" Type="Self.ctl_Empleado" Multiplicity="1" />
+    <End Role="ctl_Login" Type="Self.ctl_Login" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ctl_Empleado">
+        <PropertyRef Name="Id_empleado" />
+      </Principal>
+      <Dependent Role="ctl_Login">
+        <PropertyRef Name="Id_Empleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctl_Nomina_ctl_Empleado">
+    <End Role="ctl_Empleado" Type="Self.ctl_Empleado" Multiplicity="1" />
+    <End Role="ctl_Nomina" Type="Self.ctl_Nomina" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ctl_Empleado">
+        <PropertyRef Name="Id_empleado" />
+      </Principal>
+      <Dependent Role="ctl_Nomina">
+        <PropertyRef Name="Id_Empleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctl_Proyecto_ctl_Cliente">
+    <End Role="ctl_Cliente" Type="Self.ctl_Cliente" Multiplicity="1" />
+    <End Role="ctl_Proyecto" Type="Self.ctl_Proyecto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctl_Cliente">
+        <PropertyRef Name="Id_Cliente" />
+      </Principal>
+      <Dependent Role="ctl_Proyecto">
+        <PropertyRef Name="Id_Cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctl_Proyecto_ctl_Empleado">
+    <End Role="ctl_Empleado" Type="Self.ctl_Empleado" Multiplicity="1" />
+    <End Role="ctl_Proyecto" Type="Self.ctl_Proyecto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctl_Empleado">
+        <PropertyRef Name="Id_empleado" />
+      </Principal>
+      <Dependent Role="ctl_Proyecto">
+        <PropertyRef Name="Id_Empleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctl_SAP_ctl_Cliente">
+    <End Role="ctl_Cliente" Type="Self.ctl_Cliente" Multiplicity="1" />
+    <End Role="ctl_SAP" Type="Self.ctl_SAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ctl_Cliente">
+        <PropertyRef Name="Id_Cliente" />
+      </Principal>
+      <Dependent Role="ctl_SAP">
+        <PropertyRef Name="Id_Cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PAGINA_CARPETA">
+    <End Role="CARPETA" Type="Self.CARPETA" Multiplicity="0..1" />
+    <End Role="PAGINA" Type="Self.PAGINA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CARPETA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PAGINA">
+        <PropertyRef Name="CARPETA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PAGINAT_PAGINA">
+    <End Role="PAGINA" Type="Self.PAGINA" Multiplicity="1" />
+    <End Role="PAGINAT" Type="Self.PAGINAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PAGINA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PAGINAT">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="Tbl_RXRModelStoreContainer">
+    <EntitySet Name="CARPETA" EntityType="Self.CARPETA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctl_Cliente" EntityType="Self.ctl_Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctl_ContactosCliente" EntityType="Self.ctl_ContactosCliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctl_Dia" EntityType="Self.ctl_Dia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctl_Empleado" EntityType="Self.ctl_Empleado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctl_Login" EntityType="Self.ctl_Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctl_Nomina" EntityType="Self.ctl_Nomina" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctl_Proyecto" EntityType="Self.ctl_Proyecto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctl_SAP" EntityType="Self.ctl_SAP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctl_WorkTime" EntityType="Self.ctl_WorkTime" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PAGINA" EntityType="Self.PAGINA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PAGINAT" EntityType="Self.PAGINAT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ctl_Perfil" EntityType="Self.ctl_Perfil" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ctl_Perfil].[id] AS [id], 
+    [ctl_Perfil].[descripcion] AS [descripcion]
+    FROM [dbo].[ctl_Perfil] AS [ctl_Perfil]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_ctl_ContactosCliente_ctl_Cliente" Association="Self.FK_ctl_ContactosCliente_ctl_Cliente">
+      <End Role="ctl_Cliente" EntitySet="ctl_Cliente" />
+      <End Role="ctl_ContactosCliente" EntitySet="ctl_ContactosCliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctl_Login_ctl_Empleado" Association="Self.FK_ctl_Login_ctl_Empleado">
+      <End Role="ctl_Empleado" EntitySet="ctl_Empleado" />
+      <End Role="ctl_Login" EntitySet="ctl_Login" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctl_Nomina_ctl_Empleado" Association="Self.FK_ctl_Nomina_ctl_Empleado">
+      <End Role="ctl_Empleado" EntitySet="ctl_Empleado" />
+      <End Role="ctl_Nomina" EntitySet="ctl_Nomina" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctl_Proyecto_ctl_Cliente" Association="Self.FK_ctl_Proyecto_ctl_Cliente">
+      <End Role="ctl_Cliente" EntitySet="ctl_Cliente" />
+      <End Role="ctl_Proyecto" EntitySet="ctl_Proyecto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctl_Proyecto_ctl_Empleado" Association="Self.FK_ctl_Proyecto_ctl_Empleado">
+      <End Role="ctl_Empleado" EntitySet="ctl_Empleado" />
+      <End Role="ctl_Proyecto" EntitySet="ctl_Proyecto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctl_SAP_ctl_Cliente" Association="Self.FK_ctl_SAP_ctl_Cliente">
+      <End Role="ctl_Cliente" EntitySet="ctl_Cliente" />
+      <End Role="ctl_SAP" EntitySet="ctl_SAP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PAGINA_CARPETA" Association="Self.FK_PAGINA_CARPETA">
+      <End Role="CARPETA" EntitySet="CARPETA" />
+      <End Role="PAGINA" EntitySet="PAGINA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PAGINAT_PAGINA" Association="Self.FK_PAGINAT_PAGINA">
+      <End Role="PAGINA" EntitySet="PAGINA" />
+      <End Role="PAGINAT" EntitySet="PAGINAT" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

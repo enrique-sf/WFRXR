@@ -1,0 +1,54 @@
+﻿body {
+    background-color: #F5F5F5;
+    color: #555;
+    font-size: 1.1em;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.containerx {
+    margin: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15ch, 1fr));
+    grid-gap: 1em;
+}
+
+.flow-switcher:checked ~ .containerx {
+    grid-auto-flow: dense;
+}
+
+.grid__item {
+    background-color: #e3f2fd;
+    padding: 1em;
+    cursor: pointer;
+    border-radius: 5px 5px;
+}
+
+.c {
+    grid-column: span 1;
+    grid-row: span 3;
+}
+
+.d {
+    grid-column: span 2;
+    grid-row: span 3;
+}
+
+.j {
+    grid-column: span 3;
+}
+
+.g {
+    grid-column: span 3;
+    grid-row: span 2;
+}
+
+.grow {
+    transition: 1s ease;
+}
+
+    .grow:hover {
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+        transition: 1s ease;
+    }
